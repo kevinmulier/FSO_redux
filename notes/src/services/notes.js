@@ -12,3 +12,11 @@ const createNew = async (content) => {
   const response = await axios.post(baseUrl, object);
   return response.data;
 };
+
+const toggle = async (object) => {
+  const newObject = { ...object, important: !object.important };
+  const response = await axios.put(`${baseUrl}/${object.id}`, newObject);
+  return response.data;
+};
+
+export default { getAll, createNew, toggle };
