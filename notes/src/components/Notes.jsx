@@ -22,8 +22,8 @@ const Notes = () => {
       : notes.filter((note) => !note.important);
   });
 
-  const toggleImportance = async (note) => {
-    const updatedNote = await noteService.toggle(note);
+  const toggleImportance = async (id) => {
+    const updatedNote = await noteService.toggle(id);
     dispatch(toggleImportanceOf(updatedNote));
   };
 
@@ -33,7 +33,7 @@ const Notes = () => {
         <Note
           key={note.id}
           note={note}
-          handleClick={() => toggleImportance(note)}
+          handleClick={() => toggleImportance(note.id)}
         />
       ))}
     </ul>

@@ -13,10 +13,15 @@ const createNew = async (content) => {
   return response.data;
 };
 
-const toggle = async (object) => {
-  const newObject = { ...object, important: !object.important };
-  const response = await axios.put(`${baseUrl}/${object.id}`, newObject);
-  return response.data;
+const toggle = async (id) => {
+  const response = await axios.get(`${baseUrl}/${id}`);
+  const objectData = response.data;
+  const updatedObject = {
+    ...objectData,
+    important: !objectData.important,
+  };
+  const updateResponse = await axios.put(`${baseUrl}/${id}`, updatedObject);
+  return updateResponse.data;
 };
 
 export default { getAll, createNew, toggle };
